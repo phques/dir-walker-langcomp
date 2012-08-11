@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{002A2DE9-8BB6-484D-9802-7E4AD4084715}") = "dirWalker1.d", "dirWalker1.d.visualdproj", "{A172F73A-A561-4CB5-8909-E399E437AD3A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A172F73A-A561-4CB5-8909-E399E437AD3A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A172F73A-A561-4CB5-8909-E399E437AD3A}.Debug|Win32.Build.0 = Debug|Win32
+		{A172F73A-A561-4CB5-8909-E399E437AD3A}.Release|Win32.ActiveCfg = Release|Win32
+		{A172F73A-A561-4CB5-8909-E399E437AD3A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

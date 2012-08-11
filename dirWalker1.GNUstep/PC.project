@@ -1,0 +1,69 @@
+{
+    CLASS_FILES = (
+	OneDirBase.m
+    );
+    COMPILEROPTIONS = "";
+    CPPOPTIONS = "";
+    CREATION_DATE = "2010-10-17 16:27:06 -0400";
+    DOCU_FILES = (
+    );
+    FRAMEWORKS = (
+    );
+    HEADER_FILES = (
+	OneDirBase.h
+    );
+    IMAGES = (
+    );
+    INSTALLDIR = "$(HOME)/GNUstep/Tools";
+    LANGUAGE = English;
+    LAST_EDITING = "2010-11-16 23:45:27 -0500";
+    LIBRARIES = (
+	"gnustep-base"
+    );
+    LINKEROPTIONS = "";
+    LOCALIZED_RESOURCES = (
+    );
+    MAKEFILEDIR = "$(GNUSTEP_MAKEFILES)";
+    OBJC_COMPILEROPTIONS = "-g";
+    OTHER_RESOURCES = (
+	Version
+    );
+    OTHER_SOURCES = (
+	main.m
+    );
+    PC_WINDOWS = {
+	ProjectBrowser = "{x = 0; y = 0; width = 738; height = 165.526}";
+	ProjectWindow = "283 28 762 847 0 0  1440 900 ";
+	ShowToolbar = YES;
+    };
+    PROJECT_AUTHORS = (
+    );
+    PROJECT_COPYRIGHT = "Copyright (C) 200x";
+    PROJECT_COPYRIGHT_DESC = "Released under ...";
+    PROJECT_CREATOR = "Philippe Quesnel,,,";
+    PROJECT_DESCRIPTION = "No description available!";
+    PROJECT_GROUP = "No group available!";
+    PROJECT_MAINTAINER = "Philippe Quesnel,,,";
+    PROJECT_NAME = dirWalker1.GNUstep;
+    PROJECT_RELEASE = 0.1;
+    PROJECT_SUMMARY = "No summary available!";
+    PROJECT_TYPE = Tool;
+    PROJECT_URL = "";
+    SEARCH_HEADER_DIRS = (
+    );
+    SEARCH_LIB_DIRS = (
+    );
+    SUBPROJECTS = (
+    );
+    SUPPORTING_FILES = (
+	GNUmakefile.preamble,
+	GNUmakefile,
+	GNUmakefile.postamble,
+	dirWalker1.GNUstepInfo.plist
+    );
+    TOOLICON = "";
+    USER_LANGUAGES = (
+	CanadaEnglish,
+	English
+    );
+}

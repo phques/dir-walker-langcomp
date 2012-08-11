@@ -1,0 +1,115 @@
+#~ Unicon version, uses classes
+
+link io
+link basename
+
+#~ wrapper to hold the string, but can be used to one instance as a reference vs  copies of the string
+#~ record BasePath(path)
+
+#~ =========
+class OneDirBase(fullPath,  name, filenames, kids)
+
+   method Read()
+      local filelist, filename, subdir, subdirs, item
+      
+      # Get all filenames (inc. subdirs)
+      filelist := filetext(fullPath)
+      
+      # classify into files / dirs
+      subdirs := list()
+      every filename := !filelist do {
+         # skip ".", ".." and 'hidden' files eg: ".properties"
+         if not match('.', filename) then {
+            item := fullPath || "/" || filename
+            if directory(item) then push(subdirs, item)
+                               else push(filenames, filename)
+         }
+      }
+      
+      # recurse on kid subdirs
+      every subdir := !subdirs do {
+         kid := Create(subdir)
+         push(kids, kid)
+         kid.Read()
+      }
+   end
+
+   # ------
+
+   method Walk(level)
+      local kid, filename
+      /level := 0  ## default to 0
+
+      # self
+      ProcessDir(level)
+      
+      # recurse on kids
+      every kid := !kids do 
+         kid.Walk(level+1)
+
+      # filenames
+      every filename := !filenames do 
+         ProcessFile(level, filename)
+   end
+
+   # ------
+
+   # virtuals
+   method Create(fullPath)
+      return OneDirBase(fullPath)
+   end
+
+   method ProcessDir(level)
+   end
+
+   method ProcessFile(level, filename)
+   end
+
+   # ------
+
+   initially
+      kids := list()
+      filenames := list()
+      # Get 'base' dir name, eg: /home/kwez/toto => toto
+      name := basename(fullPath)
+end
+
+#~ =========
+
+class DirPrinter : OneDirBase (fullPath)
+   # overrides
+   method Create(fullPath)
+      return DirPrinter(fullPath)
+   end
+   
+   method spaces(level)
+      return repl(" ", level * 2)
+   end
+   
+   method ProcessDir(level)
+      write(spaces(level), "+", name, "/")
+   end
+
+   method ProcessFile(level, filename)
+      write(spaces(level+1), filename)
+   end
+
+
+   initially
+      self.OneDirBase.initially()
+end
+
+#~ =========
+
+procedure main(args)
+   if *args ~= 1 then stop("argument: directorypath")
+   if not directory(args[1]) then stop(fullPath, " is not a directory")
+
+#~    one := OneDirBase(args[1])
+   one := DirPrinter(args[1])
+   one.Read()
+#~    write("=>", one.name)
+#~    every write(!one.filenames)
+   write("======")
+   one.Walk()
+end
