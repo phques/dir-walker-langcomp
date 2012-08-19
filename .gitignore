@@ -14,7 +14,6 @@ ooUtil.js
 println.js
 jsLibc.js
 myload.js
-dirWalker1.self/
 dirWalker1.slate/
 dirWalker1.smalltalk/*
 !dirWalker1.smalltalk/DirWalker.st
