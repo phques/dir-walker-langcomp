@@ -1,0 +1,117 @@
+
+define: #OneDirBase 
+&slots: {#kids. #filenames. #directory. }.
+
+d@(OneDirBase traits) name [d directory locator baseName].
+d@(OneDirBase traits) path [d directory locator as: String].
+
+"------------"
+
+d@(OneDirBase traits) initWithName: dirName
+[
+   d kids: ExtensibleArray new.
+   d filenames: ExtensibleArray new.
+   d directory: (Directory newNamed: dirName).
+   d
+].
+
+d@(OneDirBase traits) newNamed: dirName
+[d clone initWithName: dirName].
+
+
+"------------"
+
+
+d@(OneDirBase traits) read
+[ |dir subdir kid|
+   dir: d directory.
+   "inform: d name. ##debug"
+   
+   "get & process dir entries"
+    (dir entries) do: 
+    [ |:entry|
+      "skip '.', '..' && 'hidden' files '.xx'"
+      entry first = $. ifFalse: 
+      [
+         "is it a subdir?"
+         subdir: (dir childNamed: entry).
+         subdir exists ifTrue:
+         [
+            "recurse on kid subdir"
+            kid: (d newNamed: (subdir locator)).
+            d kids add: kid.
+            kid read.
+         ]
+         ifFalse:
+         [
+            "file"
+            d filenames add: entry.
+         ].
+      ].
+   ].
+].
+
+d@(OneDirBase traits) walk &level: level
+[
+   level ifNil: [level: 0].  "default value"
+   
+   "process self/dir"
+   d processAtLevel: level.
+   
+   "recurse on kids"
+   d kids do: [|:kid| kid walk &level: level + 1].
+   
+   "process filenames"
+   d filenames do: [|:filename| d processFile: filename atLevel: level].
+].
+
+"issh isnt there a better than this !!??"
+_@(OneDirBase traits) spaces: level
+[ |str|
+   str: (String new &capacity: (level * 3)).
+   "str doWithIndex:[|:_ :i| str at: i put: $ ]."
+   str atAllPut: $ .
+   str
+].
+
+d@(OneDirBase traits) processAtLevel: level
+[
+].
+
+d@(OneDirBase traits) processFile: filename atLevel: level
+[
+].
+
+"==========="
+
+define: #DirPrinter &parents: {OneDirBase}.
+
+d@(DirPrinter traits) processAtLevel: level
+[
+   inform: ((d spaces: level) ; '+' ; d name ; '/').
+].
+
+d@(DirPrinter traits) processFile: filename atLevel: level
+[
+   inform: ((d spaces: level + 1) ; filename).
+].
+
+"quick sanity check, useful for 1st level, really"
+"dir exists ifFalse: [error: d path ; ' doesn\'t exist !']."
+
+addSlot: #d.
+
+inform: 'OneDirBase  -----'.
+d: (OneDirBase newNamed: '/home/kwez/toto/self').
+inform: d path.
+inform: d name.
+d read.
+d walk.
+
+inform: 'DirPrinter -----'.
+d: (DirPrinter newNamed: '/home/kwez/toto/self').
+inform: d path.
+inform: d name.
+d read.
+d walk.
+
