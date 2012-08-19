@@ -1,6 +1,6 @@
 
 define: #OneDirBase 
-&slots: {#kids. #filenames. #directory. }.
+&slots: {#kids. #filenames. #directory}.
 
 d@(OneDirBase traits) name [d directory locator baseName].
 d@(OneDirBase traits) path [d directory locator as: String].
@@ -16,12 +16,12 @@ d@(OneDirBase traits) initWithName: dirName
 ].
 
 d@(OneDirBase traits) newNamed: dirName
-[d clone initWithName: dirName].
+  [d clone initWithName: dirName].
 
 
 "------------"
 
-
+"reads directory contents, recursing on kids/subdirs"
 d@(OneDirBase traits) read
 [ |dir subdir kid|
    dir: d directory.
@@ -31,26 +31,26 @@ d@(OneDirBase traits) read
     (dir entries) do: 
     [ |:entry|
       "skip '.', '..' && 'hidden' files '.xx'"
-      entry first = $. ifFalse: 
+      (entry first = $.) ifFalse: 
       [
          "is it a subdir?"
          subdir: (dir childNamed: entry).
          subdir exists ifTrue:
          [
             "recurse on kid subdir"
-            kid: (d newNamed: (subdir locator)).
+            kid: (d newNamed: (subdir locator)). "nb; this creates *correct* type when 'subclassed'"
             d kids add: kid.
             kid read.
          ]
-         ifFalse:
-         [
-            "file"
+         ifFalse: 
+         [  "file"
             d filenames add: entry.
          ].
       ].
    ].
 ].
 
+"traverse the (read to memory) directory tree"
 d@(OneDirBase traits) walk &level: level
 [
    level ifNil: [level: 0].  "default value"
@@ -65,15 +65,6 @@ d@(OneDirBase traits) walk &level: level
    d filenames do: [|:filename| d processFile: filename atLevel: level].
 ].
 
-"issh isnt there a better than this !!??"
-_@(OneDirBase traits) spaces: level
-[ |str|
-   str: (String new &capacity: (level * 3)).
-   "str doWithIndex:[|:_ :i| str at: i put: $ ]."
-   str atAllPut: $ .
-   str
-].
-
 d@(OneDirBase traits) processAtLevel: level
 [
 ].
@@ -84,7 +75,14 @@ d@(OneDirBase traits) processFile: filename atLevel: level
 
 "==========="
 
-define: #DirPrinter &parents: {OneDirBase}.
+"'subclass' of OneBaseDir, outputs to console on walk"
+addPrototype: #DirPrinter derivedFrom: {OneDirBase}.
+
+DirPrinter addSlot: #_spaces 
+            valued: (String new &capacity: 512) `>> [atAllPut: $ ].
+
+"return a (slice of) a string of (level*3) spaces"
+_@(DirPrinter traits) spaces: level [DirPrinter _spaces sliceUpTo: (level * 3)].
 
 d@(DirPrinter traits) processAtLevel: level
 [
@@ -96,22 +94,23 @@ d@(DirPrinter traits) processFile: filename atLevel: level
    inform: ((d spaces: level + 1) ; filename).
 ].
 
+"=========="
+
 "quick sanity check, useful for 1st level, really"
 "dir exists ifFalse: [error: d path ; ' doesn\'t exist !']."
 
 addSlot: #d.
+addSlot: #name valued: '/home/kwez/toto/self'.
 
 inform: 'OneDirBase  -----'.
-d: (OneDirBase newNamed: '/home/kwez/toto/self').
+d: (OneDirBase newNamed: name).
 inform: d path.
 inform: d name.
-d read.
+d read. "does nothing"
 d walk.
 
 inform: 'DirPrinter -----'.
-d: (DirPrinter newNamed: '/home/kwez/toto/self').
-inform: d path.
-inform: d name.
+d: (DirPrinter newNamed: name).
 d read.
 d walk.
 
