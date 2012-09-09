@@ -4,6 +4,7 @@ import std.stdio;
 import std.file;
 import std.path;
 import std.array;
+import std.algorithm;
 
 
 class BaseDir
@@ -96,7 +97,7 @@ public:
 }
 
 int main(string[] argv)
-{
+{ 
     if (argv.length != 2 || !isDir(argv[1]))
     {
         writeln("param: directory to list");

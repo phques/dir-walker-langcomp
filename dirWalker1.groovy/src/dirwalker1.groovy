@@ -65,7 +65,8 @@ class OneDirPrint extends OneDirBase {
 
 // main
 //## running from groovyConsole, no cmdline args !
-args = ['/home/philippe/Downloads'] as String[]
+args = ['/home/kwez/Downloads'] as String[]
+//args = this.args
 if (args.length == 1 && new File(args[0]).isDirectory()) {
     
     //OneDirBase one = new OneDirBase(args[0])

@@ -1,3 +1,5 @@
+bin/
+obj/
 *~
 *.[oa]
 *.so
@@ -14,7 +16,9 @@ ooUtil.js
 println.js
 jsLibc.js
 myload.js
+
 dirWalker1.slate/*
 !dirWalker1.slate/*.slate
+
 dirWalker1.smalltalk/*
-!dirWalker1.smalltalk/DirWalker.st
+!dirWalker1.smalltalk/DirWalker*.st

@@ -77,6 +77,6 @@ end
 
 --~ one = OneDirBase:new()
 one = OneDirPrint:new()
-one:Read('/home/philippe','Downloads')
+one:Read('/home/kwez','Downloads')
 
 one:Walk()
