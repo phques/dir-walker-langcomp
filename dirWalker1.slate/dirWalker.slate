@@ -62,7 +62,7 @@ d@(OneDirBase traits) walk &level: level
    d kids do: [|:kid| kid walk &level: level + 1].
    
    "process filenames"
-   d filenames do: [|:filename| d processFile: filename atLevel: level].
+   d filenames do: [|:filename| d processFile: filename atLevel: level + 1].
 ].
 
 d@(OneDirBase traits) processAtLevel: level
@@ -76,13 +76,18 @@ d@(OneDirBase traits) processFile: filename atLevel: level
 "==========="
 
 "'subclass' of OneBaseDir, outputs to console on walk"
-addPrototype: #DirPrinter derivedFrom: {OneDirBase}.
+"addPrototype: #DirPrinter derivedFrom: {OneDirBase}."
+define: #DirPrinter &parents: {OneDirBase}.
 
-DirPrinter addSlot: #_spaces 
-            valued: (String new &capacity: 512) `>> [atAllPut: $ ].
+"DirPrinter addSlot: #_spaces 
+            valued: (String new &capacity: 512) `>> [atAllPut: $ ]."
 
 "return a (slice of) a string of (level*3) spaces"
-_@(DirPrinter traits) spaces: level [DirPrinter _spaces sliceUpTo: (level * 3)].
+"with slateimage-2011, ('1234' sliceUpTo:2) ; 'abc' gives us just 'abc' !!"
+"_@(DirPrinter traits) spaces: level [DirPrinter _spaces sliceUpTo: (level * 3)]."
+
+" note that we need the `>> for the 2010 image !!"
+_@(DirPrinter traits) spaces: level [(String new &capacity: (level * 3)) `>> [atAllPut: $ ] ].
 
 d@(DirPrinter traits) processAtLevel: level
 [
@@ -91,7 +96,7 @@ d@(DirPrinter traits) processAtLevel: level
 
 d@(DirPrinter traits) processFile: filename atLevel: level
 [
-   inform: ((d spaces: level + 1) ; filename).
+   inform: ((d spaces: level) ; filename).
 ].
 
 "=========="
@@ -100,7 +105,8 @@ d@(DirPrinter traits) processFile: filename atLevel: level
 "dir exists ifFalse: [error: d path ; ' doesn\'t exist !']."
 
 addSlot: #d.
-addSlot: #name valued: '/home/kwez/toto/self'.
+"addSlot: #name valued: '/home/kwez/toto/self'."
+addSlot: #name valued: '/home/kwez/temp'.
 
 inform: 'OneDirBase  -----'.
 d: (OneDirBase newNamed: name).
