@@ -1,0 +1,5 @@
+#!/bin/sh
+
+export GOPATH=`pwd`
+/home/kwez/dev/liteide/bin/liteide $GOPATH &
+
