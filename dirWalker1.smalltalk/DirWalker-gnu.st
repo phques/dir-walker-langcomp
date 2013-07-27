@@ -1,3 +1,6 @@
+" DirWalker project"
+" Copyright 2013 Philippe Quesnel"
+" Licensed under the Academic Free License version 3.0"
 
 Object subclass: OneDirBase [
     | name kids filenames |
@@ -113,6 +116,6 @@ Eval [
 
 Eval [
     d := DirPrinter new.
-    d readAt: '/home/kwez/temp'.
+    d readAt: '/home/kwez/Videos'.
     d walk
 ]

@@ -1,4 +1,7 @@
 // jint javascript script
+// DirWalker project
+// Copyright 2013 Philippe Quesnel
+// Licensed under the Academic Free License version 3.0
 
 //System.Console.WriteLine('allo toi')
 

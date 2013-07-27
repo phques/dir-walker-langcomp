@@ -1,0 +1,13 @@
+As a test of ease of use of different programming languages, I implemented many versions of a simple program that reads a file system directory structure in memory and then 'walks' through it, outputting the results on 'stdout', in a indented hierarchy.
+
+Most of the versions are done with Object orientated methods, the original idea was to see how easy it was to have a base class that has the Read() and Walk() methods, calling processDirectory() and processFile() (sub)methods. To be able to subclass the Base class, the Read() functions needs to have the ability to create new instances of the proper class (derived or base etc).
+This is naturally part of the Prototype object oriented languages like Javascript. Other languages offer reflection that can be used to create instances. In other cases it is done manually by have a Create() method that is overridden in the derived classes.
+---------
+
+The Dirwalker project is Licensed under the Academic Free License version 3.0
+
+see License_AFL-3.0.txt for a text version
+or http://opensource.org/licenses/AFL-3.0
+
+Philippe Quesnel
+kwez555@hotmail.com

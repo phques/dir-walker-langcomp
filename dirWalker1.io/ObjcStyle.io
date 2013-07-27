@@ -1,3 +1,6 @@
+// DirWalker project
+// Copyright 2013 Philippe Quesnel
+// Licensed under the Academic Free License version 3.0
 
 //##pq to be able to auto-import !!
 ObjcStyle := Object clone 

@@ -1,7 +1,8 @@
  '$Revision:$'
  '
-Copyright 1992-2009 AUTHORS, Sun Microsystems, Inc. and Stanford University.
-See the LICENSE file for license information.
+ DirWalker project
+ Copyright 2013 Philippe Quesnel
+ Licensed under the Academic Free License version 3.0
 '
 
 

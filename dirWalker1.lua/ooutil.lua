@@ -1,3 +1,7 @@
+--~ DirWalker project
+--~ Copyright 2013 Philippe Quesnel
+--~ Licensed under the Academic Free License version 3.0
+
 -- ---------------------------------------------------------------
 -- 
 -- declare them once so we can just assign them in new 'classes'

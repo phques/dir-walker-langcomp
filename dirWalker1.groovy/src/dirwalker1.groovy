@@ -1,3 +1,6 @@
+// DirWalker project
+// Copyright 2013 Philippe Quesnel
+// Licensed under the Academic Free License version 3.0
 
 class OneDirBase {
     def name
@@ -65,7 +68,7 @@ class OneDirPrint extends OneDirBase {
 
 // main
 //## running from groovyConsole, no cmdline args !
-args = ['/home/kwez/Downloads'] as String[]
+args = ['/home/kwez/Videos'] as String[]
 //args = this.args
 if (args.length == 1 && new File(args[0]).isDirectory()) {
     

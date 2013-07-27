@@ -1,5 +1,9 @@
 namespace dirWalker1
 
+// DirWalker project
+// Copyright 2013 Philippe Quesnel
+// Licensed under the Academic Free License version 3.0
+
 import System
 import System.IO
 

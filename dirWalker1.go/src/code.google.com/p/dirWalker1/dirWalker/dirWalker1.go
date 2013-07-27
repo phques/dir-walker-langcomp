@@ -1,4 +1,7 @@
 // dirWalker1.go
+// DirWalker project
+// Copyright 2013 Philippe Quesnel
+// Licensed under the Academic Free License version 3.0
 package main
 
 import (
