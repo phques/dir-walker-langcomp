@@ -8,6 +8,7 @@ import (
 	"code.google.com/p/dirWalker1/dirtree"
 	"fmt"
 	"html"
+	"os"
 	"strings"
 )
 
@@ -67,8 +68,13 @@ func (d *DirPrintXml) DoFile(name string) {
 //----------
 
 func main() {
+	if len(os.Args) != 2 {
+		fmt.Println("missing parameter : directory to read")
+		return
+	}
+
 	// read tree
-	if tree, err := dirtree.New("/home/kwez/Videos"); err == nil {
+	if tree, err := dirtree.New(os.Args[1]); err == nil {
 		fmt.Println(tree)
 
 		// output indented
