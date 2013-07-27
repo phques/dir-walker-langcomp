@@ -1,0 +1,1 @@
+Note that this version, written in Go, does not use inheritance with overriding of ProcesFile/Dir.It has a signle struct with methods to handle load/walk,the Walk() method receives a DirTreePrinter interface to process/ouput dirs/files.In this case, there is 2 implementations, one 'standard', outputs indented to stdout,the other creates XML output (quite easily)
