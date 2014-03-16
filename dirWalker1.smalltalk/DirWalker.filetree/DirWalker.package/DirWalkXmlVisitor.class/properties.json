@@ -1,0 +1,14 @@
+{
+	"category" : "DirWalker",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "PhilippeQuesnel 3/7/2014 20:25",
+	"instvars" : [
+		 ],
+	"name" : "DirWalkXmlVisitor",
+	"pools" : [
+		 ],
+	"super" : "DirWalkIndentedVisitor",
+	"type" : "normal" }

@@ -1,0 +1,1 @@
+A DirWalkPrintVisitor prints out the directory structure indented as XML on a stream
