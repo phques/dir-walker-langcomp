@@ -1,0 +1,1 @@
+As a test of ease of use of different programming languages, I implemented many versions of a simple program that reads a file system directory structure in memory and then 'walks' through it, outputting the results on 'stdout', in a indented hierarchy.
