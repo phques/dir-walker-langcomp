@@ -116,6 +116,7 @@ Eval [
 
 Eval [
     d := DirPrinter new.
-    d readAt: '/home/kwez/Videos'.
+    d readAt: '/Users/philippe/src/Self-VM-Builder'.
+    "d readAt: '/users/philippe/Documents'."
     d walk
 ]

@@ -109,7 +109,8 @@ d@(DirPrinter traits) processFile: filename atLevel: level
 
 addSlot: #d.
 "addSlot: #name valued: '/home/kwez/toto/self'."
-addSlot: #name valued: '/home/kwez/temp'.
+"addSlot: #name valued: '/home/kwez/temp'."
+addSlot: #name valued: '/home/src/tmp'.
 
 inform: 'OneDirBase  -----'.
 d: (OneDirBase newNamed: name).

@@ -25,3 +25,6 @@ dirWalker1.slate/*
 dirWalker1.smalltalk/*
 !dirWalker1.smalltalk/DirWalker*.st
 !dirWalker1.smalltalk/DirWalker.filetree
+dirWalker1.roc/dirWalker
+dirWalker1.icon/dirWalker
+*.DS_Store
