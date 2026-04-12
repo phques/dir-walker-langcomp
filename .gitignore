@@ -28,3 +28,4 @@ dirWalker1.smalltalk/*
 dirWalker1.roc/dirWalker
 dirWalker1.icon/dirWalker
 *.DS_Store
+/dirWalker1.roc/aDir
