@@ -12,13 +12,13 @@ Direc : [
 
 # not exatly an implementation of the dirWalker pgm, close enough for now
 main! = |_|
-    Path.from_str(".")
+    Path.from_str "."
     |> read_dir!()?
     |> traverse!(0)?
-    Ok({})
+    Ok {}
 
 traverse! = |direc, depth|
-    spaces = Str.repeat("  ", depth)
+    spaces = Str.repeat "  " depth
     when direc is
         Filename(name) ->
             Stdout.line!("${spaces}- ${name}")?
@@ -34,24 +34,24 @@ traverse! = |direc, depth|
             List.for_each!(files, |Filename f| Result.with_default(
                 traverse!(Filename f, depth+1), {})
             )
-    Ok({})
+    Ok {}
 
 
 read_dir! = |path|
     kids = Path.list_dir!(path)?
     files = get_files!(kids)?
-    subdir_paths = get_dirs!(kids)?
-    subdirs = List.map_try!(subdir_paths, |p| read_dir!(p))?
+    subdirPaths = get_dirs!(kids)?
+    subdirs = List.map_try!(subdirPaths, |p| read_dir!(p))?
 
-    Ok(Direc({ name: Path.display(path), subdirs: subdirs, files: files }))
+    Ok Direc( { name: Path.display path, subdirs: subdirs, files: files } )
 
 get_files! = |kids_path|
     Ok(
         kids_path
         |> List.keep_if_try!(Path.is_file!)?
-        |> List.map(Path.display)
-        |> List.map(Filename),
+        |> List.map Path.display
+        |> List.map Filename,
     )
 
 get_dirs! = |kids_path|
-    Ok(List.keep_if_try!(kids_path, Path.is_dir!)?)
+    Ok List.keep_if_try!(kids_path, Path.is_dir!)?
