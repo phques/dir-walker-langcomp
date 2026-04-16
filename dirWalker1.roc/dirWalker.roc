@@ -13,7 +13,7 @@ Direc : [
 # not exatly an implementation of the dirWalker pgm, close enough for now
 main! = |_|
     Path.from_str "."
-    |> read_dir!()?
+    |> read_dir!?
     |> traverse!(0)?
     Ok {}
 
@@ -46,7 +46,7 @@ read_dir! = |path|
     Ok Direc( { name: Path.display path, subdirs: subdirs, files: files } )
 
 get_files! = |kids_path|
-    Ok(
+    Ok (
         kids_path
         |> List.keep_if_try!(Path.is_file!)?
         |> List.map Path.display
